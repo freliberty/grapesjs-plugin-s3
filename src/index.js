@@ -20,6 +20,7 @@ export default grapesjs.plugins.add('gjs-plugin-s3', (editor, opts = {}) => {
     imgFormats: [],
     bucketName: '',
     prefix: '',
+    region: 'us-east-1',	  
     accessKeyId: undefined,
     secretAccessKey: undefined,
     sessionToken: undefined,
@@ -39,7 +40,7 @@ export default grapesjs.plugins.add('gjs-plugin-s3', (editor, opts = {}) => {
       c[name] = defaults[name];
   }
 
-  if ([c.secretAccessKey, c.accessKeyId, c.sessionToken].some(
+  if ([c.secretAccessKey, c.accessKeyId, c.sessionToken ].some(
     (configuration) => (configuration == undefined) | (configuration == null))
   ) {
     console.log('coming');
@@ -64,9 +65,10 @@ export default grapesjs.plugins.add('gjs-plugin-s3', (editor, opts = {}) => {
   AWS.config.update({
     accessKeyId: c.accessKeyId,
     secretAccessKey: c.secretAccessKey,
-    sessionToken: c.sessionToken
+    sessionToken: c.sessionToken,
+    region: c.region	  
   });
-  const s3 = new S3();
+  const s3 = new S3({'region': c.region});
   function listS3Objects(params) {
     const s3Params = {
       Bucket: c.bucketName,
@@ -168,6 +170,8 @@ export default grapesjs.plugins.add('gjs-plugin-s3', (editor, opts = {}) => {
       ContentType: file.type,
       Body: file
     }
+
+    AWS.config.region = c.region;
     s3.putObject(params, (err, data) => {
       if (err) {
         console.log(err);

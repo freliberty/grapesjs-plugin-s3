@@ -21,20 +21,11 @@
 
 
   <script type="text/javascript">
-    var host = 'http://artf.github.io/grapesjs/';
-    var images = [
-      host + 'img/grapesjs-logo.png',
-      host + 'img/tmp-blocks.jpg',
-      host + 'img/tmp-tgl-images.jpg',
-      host + 'img/tmp-send-test.jpg',
-      host + 'img/tmp-devices.jpg',
-    ];
 
     var editor = grapesjs.init({
       height: '100%',
       noticeOnUnload: 0,
       storageManager: { autoload: 0 },
-      assetManager: { assets: images },
       container: '#gjs',
       fromElement: true,
 
@@ -42,11 +33,12 @@
       pluginsOpts: {
         'gjs-plugin-s3': {
           imgFormats: ["png", "jpeg", "jpg"],
-          bucketName: "bodylesscms",
-          prefix: "content/img/",
-          accessKeyId: '<AWS Access key Id>',
-          secretAccessKey: '<Aws secret access key>',
-          sessionToken: '<AWS Sessions Token>'
+          bucketName: "crm-cmb",
+          prefix: "/",
+          region: 'eu-west-1',
+          accessKeyId: 'ASIAQCHOAO7WEE5W56JD',
+          secretAccessKey: 'ObukH7M+yTP4B5dgedJy1MEKn/thfdr4Fs8HNXK1',
+          sessionToken: 'FQoGZXIvYXdzECgaDEbNPcepZPyDLtL6tiL1AYc1zvKjzrb+tmXX1vFshnxaCTsFkys5DKHl5VOybrfVlxrqV9seI8rsf+QkWxA3+Ur6vl/kR+gu5mVuyTOhbYzkp3QGyLBvNvhSkdVxB9K+c3DzcKmOj3ZrZNUlS1PAPRphg/d+aQ9U2GnHLP6i2J+STEstP6Ax6qYM+IpUQHd4BRkl9Bx2991LwP/ln0CXs05cEfcJk4IcQB3GK+3uXow6K4dDomTZqFsj2JnYkp3bnniw1saQmpJofoSrvoObUnJBvwkXW2lNa6q+qKVeVz62EcB1yKnOlwIh2xVDy/kG1MPEvBpQ8pWtGi6yHMeriQcuvG8jKLrdr+cF'
         }
       }
     });
