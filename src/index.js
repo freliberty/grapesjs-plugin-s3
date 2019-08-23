@@ -4,7 +4,7 @@ import AWS from 'aws-sdk';
 
 
 export default grapesjs.plugins.add('gjs-plugin-s3', (editor, opts = {}) => {
-    let c = editor.Config.pluginsOpts["gjs-plugin-s3"];
+    let c = opts;
     let config = editor.getConfig();
     let pfx = config.stylePrefix || '';
     let btnEl;
